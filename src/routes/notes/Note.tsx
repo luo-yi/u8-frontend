@@ -18,7 +18,7 @@ function Note(props: NoteProps) {
   } = props;
 
   const [noteTitle, setNoteTitle] = useState(title);
-  const [noteBody, setNoteBody] = useState(title);
+  const [noteBody, setNoteBody] = useState(body);
 
   useEffect(() => {
     setNoteTitle(title);
