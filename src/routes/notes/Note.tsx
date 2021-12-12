@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import debounce from 'lodash.debounce';
 import Card from '@mui/material/Card';
 import TextField from '@mui/material/TextField';
@@ -17,9 +17,28 @@ function Note(props: NoteProps) {
     onSelect,
   } = props;
 
+  const [noteTitle, setNoteTitle] = useState(title);
+  const [noteBody, setNoteBody] = useState(title);
+
+  useEffect(() => {
+    setNoteTitle(title);
+    setNoteBody(body);
+  }, [id]);
+
+  const onTitleChange = (e: any) => {
+    setNoteTitle(e.target.value);
+    debounce(onChange, 500)(e);
+  };
+
+  const onBodyChange = (e: any) => {
+    setNoteBody(e.target.value);
+    debounce(onChange, 500)(e);
+  };
+
   return (
     <Card className="note-card">
       <Checkbox
+        id={`note-selected-${id}`}
         size="small"
         className="note-selector"
         checked={selected}
@@ -27,25 +46,27 @@ function Note(props: NoteProps) {
       />
 
       <TextField
+        id={`note-title-${id}`}
         size="small"
         name="title"
         label={`Note #${id}`}
-        defaultValue={title}
-        onChange={debounce(onChange, 500)}
+        value={noteTitle}
+        onChange={onTitleChange}
         className="note-field"
         variant="standard"
         error={status === NoteStatus.NotComplete}
       />
 
       <TextField
+        id={`note-body-${id}`}
         multiline
         rows={6}
         maxRows={6}
         size="small"
         name="body"
         label={status}
-        defaultValue={body}
-        onChange={debounce(onChange, 500)}
+        value={noteBody}
+        onChange={onBodyChange}
         className="note-field"
         variant="standard"
         error={status === NoteStatus.NotComplete}
