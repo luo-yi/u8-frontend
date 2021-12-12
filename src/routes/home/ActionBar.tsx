@@ -4,23 +4,27 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import GitHubIcon from '@mui/icons-material/GitHub';
 
-function Home() {
+function ActionBar(props: { githubURL: string }) {
+  const { githubURL } = props;
+
   // @ts-ignore
   const isDark = useTheme().palette.mode === 'dark';
 
   return (
     <Box className="action-bar">
-      <Button
-        size="small"
-        variant={isDark ? 'outlined' : 'contained'}
-        endIcon={<GitHubIcon />}
-        disableElevation={!isDark}
-        className="float-right"
-      >
-        View In GitHub
-      </Button>
+      <a href={githubURL} target="_blank" rel="noreferrer">
+        <Button
+          size="small"
+          variant={isDark ? 'outlined' : 'contained'}
+          endIcon={<GitHubIcon />}
+          disableElevation={!isDark}
+          className="float-right"
+        >
+          View In GitHub
+        </Button>
+      </a>
     </Box>
   );
 }
 
-export default Home;
+export default ActionBar;
