@@ -15,8 +15,15 @@ function useArray<T extends object>(initialArray: T[] = []) {
 
   const removeById = (id: any) => setValue((arr) => arr.filter((x: any) => x.id !== id));
 
+  const removeByIds = (ids: any[]) => {
+    setValue((arr) => {
+      const newArr = arr.filter((x: any) => !ids.includes(x.id));
+      return newArr;
+    });
+  };
+
   return {
-    value, append, clear, removeAtIndex, removeById,
+    value, append, clear, removeAtIndex, removeById, removeByIds, setValue,
   };
 }
 

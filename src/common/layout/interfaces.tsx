@@ -7,3 +7,12 @@ export interface LayoutProps {
     name: string,
   }[];
 }
+
+export interface SidebarProps {
+  routes: {
+    path: string,
+    name: string,
+  }[];
+  dark: boolean;
+  onDarkChange: (e: any) => void;
+};

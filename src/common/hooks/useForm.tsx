@@ -1,35 +1,48 @@
 import { useState, useEffect } from 'react';
-import { OnChangeEvent } from '../interfaces';
 
 function useForm<T extends object>(initialState: T, validate: (values: T, touched: any) => any) {
-  const [values, setValues] = useState(initialState);
-  const [touched, setTouched] = useState({});
-  const [errors, setErrors] = useState({});
-  const [isValid, setIsValid] = useState(false);
+  const [form, setForm] = useState({
+    values: initialState,
+    touched: {},
+  });
+
+  const [formErrors, setFormErrros] = useState({
+    errors: {},
+    isValid: false,
+  });
+
+  const { values, touched } = form;
+  const { errors, isValid } = formErrors;
 
   const validateEffect = () => {
     const results = validate(values, touched);
-    setErrors(results.errors);
-    setIsValid(results.isValid);
+    setFormErrros({
+      errors: results.errors,
+      isValid: results.isValid,
+    });
   };
 
   useEffect(validateEffect, []);
   useEffect(validateEffect, [values, touched]);
 
-  const onChange = (e: OnChangeEvent) => {
-    setValues((obj) => ({
-      ...obj,
-      [e.target.name]: e.target.value,
-    }));
-    setTouched((obj) => ({
-      ...obj,
-      [e.target.name]: true,
+  const onChange = (e: any) => {
+    setForm((obj) => ({
+      values: {
+        ...obj.values,
+        [e.target.name]: e.target.value,
+      },
+      touched: {
+        ...obj.touched,
+        [e.target.name]: true,
+      },
     }));
   };
 
   const reset = () => {
-    setValues(initialState);
-    setTouched({});
+    setForm({
+      values: initialState,
+      touched: {},
+    });
   };
 
   return {

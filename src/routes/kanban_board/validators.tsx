@@ -5,11 +5,11 @@ export const validateForm = (values: KanbanItem, touched: any) => {
   let isValid = true;
   const errors = {} as any;
 
-  if (values.name.length === 0) {
+  if (values.title.length === 0) {
     isValid = false;
 
-    if (touched.name) {
-      errors.name = 'Required Field';
+    if (touched.title) {
+      errors.title = 'Required Field';
     }
   }
 

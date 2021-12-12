@@ -1,0 +1,38 @@
+.kanban-card {
+    margin: 12px 0px;
+    padding: 12px;
+    position: relative;
+    min-height: 180px;
+}
+
+.kanban-card-overlay {
+    position: absolute;
+    object-fit: contain;
+    margin: -12px;
+    width: 100%;
+    height: 100%;
+}
+
+.kanban-card-overlay-light {
+    background: rgba(100, 100, 255, 0.1);
+}
+
+.kanban-card-overlay-dark {
+    background: rgba(0, 255, 0, 0.05);
+}
+
+.kanban-form-card {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -25%);
+    width: 480px;
+    padding: 24px;
+    justify-content: center;
+}
+
+.kanban-form-item {
+    width: 100%;
+    margin-bottom: 18px !important;
+    text-align: left;
+}

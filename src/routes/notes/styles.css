@@ -1,0 +1,14 @@
+.note-card {
+    padding: 18px;
+    position: relative;
+}
+
+.note-field {
+    width: 100%;
+    margin-bottom: 4px !important;
+}
+
+.note-selector {
+    position: absolute !important;
+    right: 0;
+}

@@ -6,7 +6,7 @@ function useLocalStorage<T extends any>(key: string, initialValue: T) {
       const item = window.localStorage.getItem(key);
       return item ? JSON.parse(item) : initialValue;
     } catch (err) {
-      console.warn("Errors setting localStorage: ", err);
+      console.warn('Errors setting localStorage: ', err);
       return initialValue;
     }
   });

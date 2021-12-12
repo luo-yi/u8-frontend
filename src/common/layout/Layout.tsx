@@ -1,31 +1,49 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+/* eslint-disable react/jsx-props-no-spreading */
+import React, { useState, useEffect } from 'react';
+import { createMuiTheme, ThemeProvider } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import CssBaseline from '@mui/material/CssBaseline';
+import { useLocalStorage } from '../hooks';
+import Sidebar from './Sidebar';
 import { LayoutProps } from './interfaces';
-
-const styles = {
-  link: {
-    textDecoration: 'none',
-    fontWeight: 'bold',
-    margin: '0px 8px',
-    padding: '0px 12px',
-    background: 'white',
-    border: '1px solid darkgrey',
-  },
-};
 
 function Layout(props: LayoutProps) {
   const { children, routes } = props;
 
-  return (
-    <>
-      <div className="border-bottom">
-        {routes.map(({ path, name }) => (
-          <Link style={styles.link} to={path}>{name}</Link>
-        ))}
-      </div>
+  const [darkLocal, setDarkLocal] = useLocalStorage<boolean>('darkMode', true);
+  const [dark, setDark] = useState(darkLocal);
 
-      {children}
-    </>
+  useEffect(() => setDarkLocal(dark), [dark]);
+
+  const onDarkChange = (e: any) => {
+    setDark(e.target.checked);
+  };
+
+  const theme = createMuiTheme({
+    palette: {
+      mode: dark ? 'dark' : 'light',
+      ...(!dark
+        ? {
+          background: {
+            default: '#e6e8ec',
+          },
+        }
+        : {
+          background: {
+            default: '#303030',
+          },
+        }),
+    },
+  });
+
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Box display="flex">
+        <Sidebar routes={routes} dark={dark} onDarkChange={onDarkChange} />
+        {children}
+      </Box>
+    </ThemeProvider>
   );
 }
 

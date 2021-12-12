@@ -1,47 +1,67 @@
-import React from 'react';
+import React, { useState } from 'react';
+import clsx from 'clsx';
+import { useTheme } from '@mui/styles';
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import Typography from '@mui/material/Typography';
+import Divider from '@mui/material/Divider';
 import { KanbanCardProps } from './interfaces';
-
-const styles = {
-  card: {
-    background: 'white',
-    padding: '12px',
-    marginBottom: '12px',
-  },
-  description: {
-    padding: '4px 0px',
-  },
-};
+import KanbanCardActions from './KanbanCardActions';
 
 function KanbanCard(props: KanbanCardProps) {
   const {
-    kanbanItem, buttons,
+    item, buttons, actions,
   } = props;
 
   const {
-    id, type, name, description, priority,
-  } = kanbanItem;
+    id, type, title, description, priority,
+  } = item;
+
+  // @ts-ignore
+  const isDark = useTheme().palette.mode === 'dark';
+  const [isMouseOver, setIsMouseOver] = useState(false);
+
+  const onMouseEnter = () => {
+    setIsMouseOver(true);
+  };
+
+  const onMouseLeave = () => {
+    setIsMouseOver(false);
+  };
 
   return (
-    <div style={styles.card} className="border border-radius">
-      <div className="border-bottom">
-        <h3 className="no-margin">
-          {`${id}: ${name}`}
-        </h3>
-        <p className="no-margin">
-          {`${type}: ${priority} Priority`}
-        </p>
-      </div>
+    <Card
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+      className="kanban-card"
+    >
+      { isMouseOver && (
+        <Box
+          className={clsx('kanban-card-overlay', {
+            'kanban-card-overlay-light': !isDark,
+            'kanban-card-overlay-dark': isDark,
+          })}
+        >
+          <KanbanCardActions actions={actions} />
+        </Box>
+      )}
 
-      <div className="border-bottom">
-        <p style={styles.description}>
-          {description}
-        </p>
-      </div>
+      <Typography variant="h3">
+        {`${id}: ${title}`}
+      </Typography>
 
-      <br />
+      <Typography variant="subtitle1" style={{ fontSize: 14 }}>
+        {`${type}: ${priority} Priority`}
+      </Typography>
+
+      <Divider />
+
+      <Typography variant="body1" style={{ fontSize: 14, paddingTop: '12px' }}>
+        {description}
+      </Typography>
 
       { buttons }
-    </div>
+    </Card>
   );
 }
 

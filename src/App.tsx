@@ -2,13 +2,13 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Layout from './common/layout';
 import Home from './routes/home';
-import UnitEight from './routes/unit_eight';
+import Note from './routes/notes';
 import KanbanBoard from './routes/kanban_board';
 
 const routes = [
   { name: 'Home', path: '/', Component: Home },
+  { name: 'Notes', path: '/notes', Component: Note },
   { name: 'Kanban Board', path: '/kanban-board', Component: KanbanBoard },
-  { name: '?????', path: '/unit-eight', Component: UnitEight },
 ];
 
 function App() {

@@ -1,100 +1,44 @@
-@import url(http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900);
-
 html {
-  font-family: 'Roboto', sans-serif;
-  padding: 0;
-  margin: 0;
-  background: whitesmoke;
+  min-width: 780px;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  margin: 0;
-  margin-bottom: 12px;
+a { color: inherit; } 
+
+h1 { font-size: 24px !important;  }
+h2 { font-size: 24px !important;  }
+h3 { font-size: 18px !important;  }
+
+.float-right { float: right; }
+
+.sidebar-paper-light {
+  background: #b9c0ca !important;
 }
 
-.no-margin {
-  margin:  0px;
+.sidebar-header-light {}
+
+.sidebar-nav-light {
+  background: #fcfcfd !important;
 }
 
-.border {
-  border: 1px solid darkgrey;
-}
-
-.p-12 {
-  padding: 12px;
-}
-
-.border-bottom {
-  border-bottom: 1px solid darkgrey;
-}
-
-.border-radius {
-  border-radius: 4px;
-}
-
-
-/* ------------------------------ Form Styles ------------------------------ */
-/* ------------------------------------------------------------------------  */
-.basic-form {
-  padding: 12px;
-  background: white;
-}
-
-.basic-form .form-item {
-  margin-bottom: 8px;
-}
-
-.basic-form input, .basic-form textarea { 
-  width: calc(100% - 10px); /* 10px = (4px padding * 2) + (1px border * 2) */
-  padding: 4px;
-}
-
-.basic-form textarea {
-  resize: vertical;
-}
-
-.basic-form select {
+.main {
   width: 100%;
-  padding: 4px;
 }
 
-.basic-form button {
-  display: block;
-  padding: 4px 24px;
-  margin: 0 auto;
-  background: lightsteelblue;
+.action-bar {
+  overflow: hidden;
+  width: calc(100% - 36px);
+  margin: 18px;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid grey;
+  height: 48px;
 }
 
-.basic-form button:hover {
-  cursor: pointer;
+.notes-snackbar {
+  width: 280px;
+  border: 1px solid grey;
 }
 
-.basic-form label {
-  font-size: 14px;
-  font-weight: bold;
+.main-body {
+  padding: 18px;
 }
-
-.basic-form label .error {
-  color: red;
-  display: block;
-  font-size: 12px;
-  font-weight: normal;
-}
-
-.basic-form .radio-group input {
-  width: auto;
-  float: right;
-}
-
-.basic-form .radio-group input:hover {
-  cursor: pointer;
-}
-
-.basic-form .radio-group label {
-  display: block;
-  font-weight: normal;
-  padding: 4px;
-}
-
-/* ----------------------------- Tables Styles ----------------------------- */
-/* ------------------------------------------------------------------------  */
