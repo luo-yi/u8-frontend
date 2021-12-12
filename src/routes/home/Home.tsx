@@ -5,7 +5,7 @@ import ActionBar from './ActionBar';
 import YoutubeEmbed from './YoutubeEmbed';
 import './styles.css';
 
-const embedId = '9JLASzADsaI';
+const embedId = 'jNQXAC9IVRw';
 
 function Home() {
   return (
@@ -13,9 +13,11 @@ function Home() {
       <ActionBar />
 
       <Box className="main-body">
-        <Card>
-          <YoutubeEmbed embedId={embedId} />
-        </Card>
+        <Box px={12}>
+          <Card>
+            <YoutubeEmbed embedId={embedId} />
+          </Card>
+        </Box>
       </Box>
     </Box>
   );
