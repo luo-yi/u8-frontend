@@ -6,7 +6,7 @@ import YoutubeEmbed from './YoutubeEmbed';
 import './styles.css';
 
 const githubURL = 'https://github.com/luo-yi/u8';
-const embedId = 'jNQXAC9IVRw';
+const embedId = '2DLiBVmq0Yk';
 
 function Home() {
   return (
